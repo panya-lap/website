@@ -1,0 +1,296 @@
+/* google fornt Import */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+    margin: 0; /*กำหนดให้ทุก tag ไม่มีระยะขอบนอก เเละเพื่อให้ทุก element ไม่มีระยะขอบเริ่มต้น   */
+    padding: 0; /*กำหนดให้ทุก tag ไม่มีระยะขอบใน เเละเพื่อให้ทุก element ไม่มีระยะขอบเริ่มต้น   */
+    box-sizing: border-box; /*กำหนดให้ทุก tag มีการคำนวณขนาดกล่องจาก border เเละ padding  */
+    font-family: 'Poppins', sans-serif;
+    /*sans-serif จะเป็นฟอนต์สำรองถ้าเครื่องไม่อ่านฟอนต์ Poppins*/
+}
+
+/* Colors */
+:root{
+    --body-color: #E4E9F4;
+    --nav-color: #4070F4;
+    --side-nav: #010718;
+    --text-color: #FFF;
+    --search-bar: #f2f2f2;
+    --search-text: #010718;
+
+}
+
+body{
+    height: 100vh; /*กำหนดความสูงของ body ให้เต็มหน้าจอ*/
+    background: var(--body-color);
+}
+
+
+body.dark{
+        --body-color: #18191A;
+    --nav-color: #242526;
+    --side-nav: #242526;
+    --text-color: #CCC;
+    --search-bar: #242526;
+
+
+}
+
+nav{
+    position: fixed; /*กำหนดตำเเหน่งของ nav ให้อยู่กับที่*/
+    top: 0; /*กำหนดตำเเหน่งด้านบนของ nav ให้ชิดขอบบน*/
+    left: 0; /*กำหนดตำเเหน่งด้านซ้ายของ nav ให้ชิดขอบซ้าย*/
+    height: 100px; /*กำหนดความสูงของ nav*/
+    width: 100%; /*กำหนดความกว้างของ nav ให้เต็มหน้าจอ*/
+    background-color: var(--nav-color);
+    z-index: 100;
+}
+
+nav .nav-bar{
+    position: relative; /*กำหนดตำเเหน่งของ nav-bar ให้อยู่กับที่*/
+    height: 100%; /*กำหนดความสูงของ nav-bar ให้เต็มความสูงของ nav*/
+    max-width: 1000px; /*กำหนดความกว้างสูงสุดของ nav-bar*/
+    width: 100%; /*กำหนดความกว้างของ nav-bar ให้เต็มความกว้างของ nav*/
+    background-color: var(--nav-color);
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex; /*กำหนดให้ nav-bar เป็น flexbox*/
+    align-items: center; /*จัดกึ่งกลางเเนวตั้ง*/
+    justify-content: space-between; /*จัดให้มีระยะห่างเท่ากันระหว่าง element*/
+}
+
+nav .nav-bar .siderbarOpen {
+    color: var(--text-color);
+    font-size: 25px;
+    padding: 5px;
+    cursor: pointer;
+    display: none;
+}
+
+nav .nav-bar .logo a{
+    font-size: 25px;
+    font-weight: 500;
+    color: var(--text-color);
+    text-decoration: none; /*ลบเส้นใต้ข้อความออก*/
+
+}
+
+
+
+.menu .logo-toggle{
+    display: none;
+
+}
+
+
+.nav-bar .nav-links{
+    display: flex; /*กำหนดให้ nav-bar เป็น flexbox*/
+    align-items: center; /*จัดกึ่งกลางเเนวตั้ง*/
+}
+.nav-bar .nav-links li{
+    margin: 0 5px;
+    list-style: none; /*ลบสัญลักษณ์หน้าข้อความออก*/
+}
+
+.nav-links li a{
+    position: relative; /*กำหนดตำเเหน่งของ nav-bar ให้อยู่กับที่*/
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--text-color);
+    text-decoration: none; /*ลบเส้นใต้ข้อความออก*/
+    padding: 10px;
+}
+
+.nav-links li a::before{ /*จุดบน logo*/
+    content: '';
+    position: absolute; /*กำหนดตำเเหน่งของ nav-bar ให้อยู่กับที่*/
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    height: 6px;
+    width: 6px;
+    border-radius: 50%; /*กำหนดให้เป็นวงกลม*/
+    background-color: var(--text-color);
+    opacity: 0; /*กำหนดความโปร่งใส*/
+    transition: all 0.3s ease ;
+}
+
+.nav-links li:hover a::before{
+    opacity: 1;
+}
+
+.nav-bar .darklight-searchBox{
+    display: flex;
+    align-items: center;
+  
+}
+
+.darklight-searchBox .dark-light,
+.darklight-searchBox .searchToggle{
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 5px;
+}
+
+.dark-light i,
+.searchToggle i{
+    position: absolute;
+    color: var(--text-color);
+    font-size: 22px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dark-light i.sun{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.dark-light.active i.sun{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.dark-light.active i.moon{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.searchToggle i.cancel{
+    opacity: 0;
+    pointer-events: none;
+}
+.searchToggle.active i.cancel{
+    opacity: 1;
+    pointer-events: auto;
+}
+.searchToggle.active i.search{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.searchBox{
+    position: relative;
+}
+
+.searchBox .search-field{
+    position: absolute;
+    bottom: -85px;
+    right: 5px;
+    height: 50px;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    background-color: var(--nav-color);
+    padding: 3px;
+    border-radius: 6px;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.1);
+    opacity: 0;
+    pointer-events: none; /*ไม่สามารถคลิกได้*/
+    transition: all 0.3s ease;
+}
+
+.searchToggle.active ~ .search-field{
+    bottom: -74px;
+    opacity: 1;
+    pointer-events: auto; /*สามารถคลิกได้*/
+
+}
+
+.search-field::before{
+    content: '';
+    position: absolute;
+    right: 14px;
+    top: -4px;
+    height: 12px;
+    width: 12px;
+    background-color: var(--nav-color);
+    transform: rotate(-45deg); /*หมุน 45 องศาเเบบทวนเข็มนาฬิกา*/
+    z-index: -1; /*กำหนดให้ element นี้อยู่ด้านหลัง*/;
+}
+
+
+
+.search-field input{
+    height: 100%;
+    width: 100%;
+    padding: 0 45px 0 15px; /*padding: top right bottom left;*/
+    outline: none; /*ลบเส้นขอบออก*/
+    border: none; /*ลบเส้นขอบออก*/
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--search-text);
+    background-color: var(--search-bar);
+}
+
+body.dark .search-field input{
+    color: var(--text-color);
+    
+}
+
+
+.search-field i{
+    position: absolute;
+    color: var(--nav-color);
+    right: 15px;
+    font-size: 22px;
+    cursor: pointer; /*เปลี่ยน cursor เมื้อชี้เป็น pointer*/
+}
+
+@media (max-width: 790px){
+
+    nav .nav-bar .siderbarOpen {
+        display: block;
+}
+
+    .menu{
+        position: fixed;
+        height: 100%;
+        width: 320px;
+        left: -100%;
+        top: 0;
+        padding: 20px;
+        background-color: var(--side-nav);
+        z-index: 100; /*กำหนดให้ element นี้อยู่ด้านบน*/
+        transition: all 0.4s ease;
+    }
+
+    nav.active .menu{
+        left: -0%;
+
+    }
+
+    nav.active .nav-bar .navLogo a{
+        opacity: 0;
+        transition: all 0.3s ease;
+
+    }
+
+    .menu .logo-toggle{
+        display: block;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .logo-toggle .siderbarClose{
+        color: var(--text-color);
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    .nav-bar .nav-links{
+        flex-direction: column;
+        padding-top: 30px;
+    }
+
+    .nav-links li a{
+        display: block;
+        margin-top: 20px;
+    }
+}
